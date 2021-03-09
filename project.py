@@ -1,6 +1,7 @@
 from tkinter import*
-from turtle import *
+from datetime import date
 from random import *
+from turtle import *
 
 #Creating welcome window
 root = Tk()
@@ -9,12 +10,13 @@ root.configure(bg='light blue')
 root.title("RESTAURANT MANAGEMENT SYSTEM")
 
 d = []
+today = date.today()
 
 #Specifying the font 
 Font_tuple1 = ("Times New Roman", 40, "bold")
 
 #Creating a label to display welcome 
-label1 = Label(root, text = "Welcome to ____ Restaurant", bg = "light blue", fg = "black")
+label1 = Label(root, text = "Welcome to Quattro", bg = "light blue", fg = "black")
 label1.place(relx = 0.5, rely = 0.5, anchor = 'center')
 label1.configure(font = Font_tuple1)
 check = False
@@ -524,8 +526,8 @@ def bill_display():
     root9.geometry("1500x800+0+0")
     root9.configure(bg='light blue')
     root9.title('BILL')
-    lb1 = Label(root9, text = 'RESTAURANT NAME', bg = 'light grey', font = ('Times New Roman', 30, 'bold')).place(relx = 0.6,  rely = 0.0 , anchor = 'ne')
-    lb2 = Label(root9, text = 'Date: 01/03/2021', bg = 'light blue', font = ('Times New Roman', 20, 'bold')).place(relx = 0.1,  rely = 0.1 , anchor = 'ne')
+    lb1 = Label(root9, text = 'Quattro', bg = 'light grey', font = ('Times New Roman', 30, 'bold')).place(relx = 0.5,  rely = 0.0 , anchor = 'ne')
+    lb2 = Label(root9, text = today, bg = 'light blue', font = ('Times New Roman', 20, 'bold')).place(relx = 0.2,  rely = 0.1 , anchor = 'ne')
     i = 0
     j = 9
     label = Label(root9, text = ' ' , bg = 'light blue').grid(row = 1, column = 1)
@@ -600,6 +602,9 @@ def pay():
         global sum1
         if (float(ep1.get()) == sum1):
             lp1 = Label(root10, text = 'Thank you!! Visit Again', bg = 'light grey', font = ('Times New Roman',30,'bold')).place(relx = 0.55, rely = 0.5, anchor = 'ne')
+        elif (float(ep1.get()) < sum1):
+            lp1 = Label(root10, text = 'You have paid less than the amount mentioned in the bill. Please pay the amount mentioned in the bill', bg = 'light grey', font = ('Times New Roman',30,'bold')).place(relx = 0.95, rely = 0.5, anchor = 'ne')
+            
         else:
             y = float(ep1.get()) - sum1
             lp1 = Label(root10, text = 'Here is your change of Rs. '+ str(y), bg = 'light grey', font = ('Times New Roman',30,'bold'),justify = 'center').place(relx = 0.55, rely = 0.5, anchor = 'ne')
